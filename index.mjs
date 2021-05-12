@@ -8,7 +8,7 @@ const app = express();
 const serve = server.Server(app);
 const io = new Server(serve, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "https://aiclass-fronted.herokuapp.com/",
     methods: ["GET", "POST"],
   },
 });
