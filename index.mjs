@@ -8,7 +8,7 @@ const app = express();
 const serve = server.Server(app);
 const io = new Server(serve, {
   cors: {
-    origin: "https://aiclass-fronted.herokuapp.com/",
+    origin: "https://aiclass-fronted.herokuapp.com/:*",
     methods: ["GET", "POST"],
   },
 });
@@ -30,7 +30,7 @@ app.get("/join", (req, res) => {
   res.send({ link: uuidV4() });
 });
 app.get("/", (req, res) => {
-  res.send("<h1>working</h1>");
+  res.send("<h1>working</h1>" + port);
 });
 
 io.on("connection", (socket) => {
