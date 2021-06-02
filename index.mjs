@@ -8,13 +8,14 @@ const app = express();
 const serve = server.Server(app);
 const io = new Server(serve, {
   cors: {
-    origin: "https://aiclass-mini-project.herokuapp.com",
+    origin: "*",
+    // origin: "https://aiclass-mini-project.herokuapp.com",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Middlewares
 
@@ -46,6 +47,7 @@ io.on("connection", (socket) => {
       socket.to(roomID).emit("user-disconnected", userID);
     });
     socket.on("broadcast-message", (message) => {
+      console.log(message);
       socket
         .to(roomID)
         .emit("new-broadcast-messsage", { ...message, userData });
