@@ -52,6 +52,10 @@ io.on("connection", (socket) => {
         .to(roomID)
         .emit("new-broadcast-messsage", { ...message, userData });
     });
+    socket.on("send-alert", (message) => {
+      socket.emit("alert", { data: message.data });
+      console.log("alret message", message);
+    });
     socket.on("display-media", (value) => {
       socket.to(roomID).emit("display-media", { userID, value });
     });
